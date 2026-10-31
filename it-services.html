@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Services | ADEEB GROUP</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            70% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes flipInY {
+            from {
+                transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: perspective(400px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px var(--it-primary);
+            }
+
+            50% {
+                box-shadow: 0 0 20px var(--it-primary), 0 0 30px var(--it-primary);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-pulse-once {
+            animation: pulse 1s ease-in-out;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slide-in-top {
+            animation: slideInFromTop 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-zoom-in {
+            animation: zoomIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-flip-in-y {
+            animation: flipInY 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .animate-rotate {
+            animation: rotate 10s linear infinite;
+        }
+
+        /* Staggered Animation Delays */
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-4 {
+            animation-delay: 0.4s;
+        }
+
+        .animate-delay-5 {
+            animation-delay: 0.5s;
+        }
+
+        .animate-delay-6 {
+            animation-delay: 0.6s;
+        }
+
+        /* Page Styles with Animations */
+        .page-header {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--it-primary) 0%, var(--it-secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZDhlZGYiIG9wYWNpdHk9IjAuMSIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFkOGVkZiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjEiLz48Y2lyY2xlIGN4PSI4MDAiIGN5PSI3MDAiIHI9IjcwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxZDhlZGYiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC4xIi8+PHBhdGggZD0iTTE1MCAxNTBMMzAwIDMwMEw0NTAgMTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxZDhlZGYiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .services-detail {
+            padding: var(--section-padding);
+        }
+
+        .service-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .service-detail-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.5s ease;
+            border-left: 4px solid var(--it-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(29, 142, 223, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-detail-card:hover::before {
+            left: 100%;
+        }
+
+        .service-detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-left-width: 8px;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--white);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-detail-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .service-detail-card:hover .service-icon::after {
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-detail-card h3 {
+            margin-bottom: 15px;
+            color: var(--it-primary);
+            transition: color 0.3s ease;
+        }
+
+        .service-detail-card:hover h3 {
+            color: var(--it-secondary);
+        }
+
+        .service-detail-card ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .service-detail-card li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-detail-card:hover li {
+            transform: translateX(5px);
+        }
+
+        .service-detail-card li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--it-primary);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .service-detail-card:hover li:before {
+            color: var(--it-secondary);
+        }
+
+        .technology-stack {
+            background: var(--gray-very-light);
+            padding: var(--section-padding);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .tech-item {
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--it-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tech-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tech-item i {
+            font-size: 3rem;
+            color: var(--it-primary);
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover i {
+            color: var(--it-secondary);
+            transform: scale(1.1);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--it-primary) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            color: var(--white);
+        }
+
+        .benefit-item:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-item i {
+            font-size: 3rem;
+            color: var(--it-primary);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover i {
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .benefit-item h4 {
+            transition: color 0.3s ease;
+        }
+
+        .benefit-item:hover h4 {
+            color: var(--white);
+        }
+
+        .cta-section {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, var(--it-primary) 0%, var(--it-secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZDhlZGYiIG9wYWNpdHk9IjAuMSIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFkOGVkZiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjEiLz48Y2lyY2xlIGN4PSI4MDAiIGN5PSI3MDAiIHI9IjcwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxZDhlZGYiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC4xIi8+PHBhdGggZD0iTTE1MCAxNTBMMzAwIDMwMEw0NTAgMTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxZDhlZGYiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .it-bg {
+            background: linear-gradient(135deg, var(--it-primary), var(--it-secondary));
+        }
+
+        @media (max-width: 768px) {
+            .service-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="../index.html">
+                        <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="who-we-are.html">Who We Are</a></li>
+                                <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                                <li><a href="our-commitment.html">Our Commitment</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="active">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="facility-management.html" class="fm-color">Facility Management</a></li>
+                                <li><a href="it-services.html" class="it-color active">IT Services</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li class="dropdown">
+                            <a href="#">Contact <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="../vendor-registration.html" class="vendor-color">Vendor Registration</a>
+                                </li>
+                                <li><a href="../index.html#enquiry-section">Business Enquiry</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../admin-hub.html">Admin</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="animate-fade-in-up">IT Services & Solutions</h1>
+            <p class="animate-fade-in-up animate-delay-1">Innovative technology
+                solutions to transform your business and drive digital excellence</p>
+        </div>
+    </section>
+
+    <!-- Services Detail -->
+    <section class="services-detail">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-fade-in-up">Our IT Service Portfolio</h2>
+                <p class="animate-fade-in-up animate-delay-1">Comprehensive technology solutions designed to meet your
+                    business objectives</p>
+            </div>
+
+            <div class="service-detail-grid">
+                <div class="service-detail-card animate-flip-in-y animate-delay-1">
+                    <div class="service-icon it-bg">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Network Infrastructure</h3>
+                    <p>Design, implementation and management of robust network systems for optimal performance.</p>
+                    <ul>
+                        <li>Network design & architecture</li>
+                        <li>Wireless network solutions</li>
+                        <li>Network security implementation</li>
+                        <li>Performance monitoring</li>
+                        <li>24/7 network support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-it">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-2">
+                    <div class="service-icon it-bg">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Secure and scalable cloud services tailored to your business requirements.</p>
+                    <ul>
+                        <li>Cloud migration services</li>
+                        <li>Infrastructure as a Service (IaaS)</li>
+                        <li>Software as a Service (SaaS)</li>
+                        <li>Cloud security management</li>
+                        <li>Multi-cloud strategy</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-it">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-3">
+                    <div class="service-icon it-bg">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>Comprehensive protection against evolving digital threats and vulnerabilities.</p>
+                    <ul>
+                        <li>Security risk assessment</li>
+                        <li>Endpoint protection</li>
+                        <li>Network security monitoring</li>
+                        <li>Incident response planning</li>
+                        <li>Security awareness training</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-it">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-4">
+                    <div class="service-icon it-bg">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>IT Support & Helpdesk</h3>
+                    <p>Round-the-clock technical support to keep your systems running smoothly.</p>
+                    <ul>
+                        <li>24/7 helpdesk support</li>
+                        <li>Remote troubleshooting</li>
+                        <li>Hardware maintenance</li>
+                        <li>Software installation</li>
+                        <li>User training & support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-it">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-5">
+                    <div class="service-icon it-bg">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Management</h3>
+                    <p>Secure and efficient data storage, backup, and recovery solutions.</p>
+                    <ul>
+                        <li>Data backup solutions</li>
+                        <li>Disaster recovery planning</li>
+                        <li>Data archiving</li>
+                        <li>Database management</li>
+                        <li>Compliance reporting</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-it">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-6">
+                    <div class="service-icon it-bg">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Digital Transformation</h3>
+                    <p>Strategic technology consulting to drive innovation and digital growth.</p>
+                    <ul>
+                        <li>Digital strategy development</li>
+                        <li>Technology roadmap planning</li>
+                        <li>Process automation</li>
+                        <li>Digital workspace solutions</li>
+                        <li>Innovation consulting</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-it">Get Service Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="technology-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-fade-in-up">Our Technology Expertise</h2>
+                <p class="animate-fade-in-up animate-delay-1">Working with leading technologies to deliver cutting-edge
+                    solutions</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item animate-fade-in-up animate-delay-1">
+                    <i class="fab fa-microsoft"></i>
+                    <h4>Microsoft Solutions</h4>
+                    <p>Azure, Office 365, Dynamics</p>
+                </div>
+
+                <div class="tech-item animate-fade-in-up animate-delay-2">
+                    <i class="fab fa-aws"></i>
+                    <h4>AWS Cloud</h4>
+                    <p>EC2, S3, RDS, Lambda</p>
+                </div>
+
+                <div class="tech-item animate-fade-in-up animate-delay-3">
+                    <i class="fab fa-google"></i>
+                    <h4>Google Cloud</h4>
+                    <p>GCP, Workspace, Analytics</p>
+                </div>
+
+                <div class="tech-item animate-fade-in-up animate-delay-4">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Security</h4>
+                    <p>Cisco, Palo Alto, Fortinet</p>
+                </div>
+
+                <div class="tech-item animate-fade-in-up animate-delay-5">
+                    <i class="fas fa-network-wired"></i>
+                    <h4>Networking</h4>
+                    <p>Cisco, Juniper, Aruba</p>
+                </div>
+
+                <div class="tech-item animate-fade-in-up animate-delay-6">
+                    <i class="fas fa-database"></i>
+                    <h4>Database</h4>
+                    <p>SQL Server, Oracle, MySQL</p>
+                </div>
+            </div>
+        </div>
+        <section class="services-detail">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="animate-fade-in-up">Benefits of Our IT Services</h2>
+                    <p class="animate-fade-in-up animate-delay-1">Transform your technology infrastructure with our
+                        comprehensive IT solutions</p>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-item animate-fade-in-up animate-delay-1">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Enhanced Performance</h4>
+                        <p>Optimize system performance and ensure seamless business operations</p>
+                    </div>
+
+                    <div class="benefit-item animate-fade-in-up animate-delay-2">
+                        <i class="fas fa-lock"></i>
+                        <h4>Improved Security</h4>
+                        <p>Protect your digital assets with advanced security measures and protocols</p>
+                    </div>
+
+                    <div class="benefit-item animate-fade-in-up animate-delay-3">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Cost Efficiency</h4>
+                        <p>Reduce IT costs through optimized solutions and proactive maintenance</p>
+                    </div>
+
+                    <div class="benefit-item animate-fade-in-up animate-delay-4">
+                        <i class="fas fa-rocket"></i>
+                        <h4>Business Growth</h4>
+                        <p>Leverage technology to drive innovation and support business expansion</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="animate-fade-in-up">Ready to Transform Your IT Infrastructure?</h2>
+                    <p class="animate-fade-in-up animate-delay-1">Contact us today for a comprehensive technology
+                        assessment
+                        and customized IT solution.</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary animate-fade-in-up animate-delay-2">Get IT
+                            Assessment</a>
+                        <a href="portfolio.html" class="btn btn-secondary animate-fade-in-up animate-delay-3">View
+                            IT
+                            Projects</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col animate-on-scroll">
+                        <div class="footer-logo">
+                            <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                            <span>ADEEB GROUP</span>
+                        </div>
+                        <p>Your trusted partner for integrated Facility Management and IT
+                            Services solutions.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/adeeb-group-930a31342/"><i
+                                    class="fab fa-linkedin"></i></a>
+                            <a href="https://x.com/AdeebFM"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/adeebgroupllc"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="contact-info-card">
+                            <h4>Contact Info</h4>
+                            <ul class="contact-info">
+                                <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 500</li>
+                                <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                                <li><i class="fas fa-envelope"></i> info@adeebgroup.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-col animate-on-scroll">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="facility-management.html" class="fm-color">Facility Management</a></li>
+                            <li><a href="it-services.html" class="it-color">IT Services</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col animate-on-scroll">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="who-we-are.html">Who We Are</a></li>
+                            <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="media.html">Media</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col animate-on-scroll">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><a href="contact.html"><i class="fas fa-phone-alt"></i>Contact Us</a></li>
+                            <li><a href="../vendor-registration.html" class="vendor-color"><i
+                                        class="fas fa-clipboard-check"></i>Vendor Registration</a></li>
+                            <li><a href="contact.html"><i class="fas fa-envelope-open-text"></i>Business Enquiry</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 ADEEB GROUP. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="../js/script.js"></script>
+        <script>
+            // Intersection Observer for scroll animations
+            document.addEventListener('DOMContentLoaded', function () {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animationPlayState = 'running';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                // Observe all animated elements
+                document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-flip-in-y, .animate-bounce-in, .animate-slide-in-top, .animate-zoom-in').forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                    observer.observe(el);
+                });
+
+                // Add special effects for IT service cards
+                const serviceCards = document.querySelectorAll('.service-detail-card');
+                serviceCards.forEach(card => {
+                    card.addEventListener('mouseenter', function () {
+                        this.classList.add('animate-pulse-once');
+                    });
+
+                    card.addEventListener('mouseleave', function () {
+                        this.classList.remove('animate-pulse-once');
+                    });
+                });
+
+                // Add floating animation to tech icons on hover
+                const techIcons = document.querySelectorAll('.tech-item i');
+                techIcons.forEach(icon => {
+                    icon.addEventListener('mouseenter', function () {
+                        this.classList.add('animate-float');
+                    });
+
+                    icon.addEventListener('mouseleave', function () {
+                        this.classList.remove('animate-float');
+                    });
+                });
+            });
+        </script>
+</body>
+
+</html>

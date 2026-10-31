@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="gradA" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0d7d8a"/>
+      <stop offset="100%" stop-color="#10b9b3"/>
+    </linearGradient>
+    <linearGradient id="gradB" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f1f5f9" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- background card -->
+  <rect x="20" y="20" rx="18" ry="18" width="760" height="480" fill="url(#gradB)"/>
+
+  <!-- isometric building -->
+  <g transform="translate(120,60)">
+    <polygon points="220,0 420,120 220,240 20,120" fill="url(#gradA)" />
+    <polygon points="20,120 220,240 220,460 20,340" fill="#0b6b6d" />
+    <polygon points="220,240 420,120 420,340 220,460" fill="#17a4a6" />
+
+    <!-- windows -->
+    <g fill="#e6fbfa">
+      <rect x="48" y="156" width="30" height="40" rx="4"/>
+      <rect x="96" y="156" width="30" height="40" rx="4"/>
+      <rect x="144" y="156" width="30" height="40" rx="4"/>
+
+      <rect x="48" y="208" width="30" height="40" rx="4"/>
+      <rect x="96" y="208" width="30" height="40" rx="4"/>
+      <rect x="144" y="208" width="30" height="40" rx="4"/>
+    </g>
+  </g>
+
+  <!-- smaller block -->
+  <g transform="translate(420,180)">
+    <polygon points="60,0 120,40 60,80 0,40" fill="#c8f0ef" filter="url(#soft)"/>
+    <polygon points="0,40 60,80 60,160 0,120" fill="#9fe3df"/>
+    <polygon points="60,80 120,40 120,100 60,160" fill="#7fd6d1"/>
+  </g>
+
+  <!-- cylinders -->
+  <g transform="translate(80,380)">
+    <ellipse cx="60" cy="0" rx="60" ry="18" fill="#e8faf9"/>
+    <rect x="0" y="0" width="120" height="64" fill="#dff6f5"/>
+    <ellipse cx="60" cy="64" rx="60" ry="18" fill="#c8f0ef"/>
+  </g>
+
+  <!-- people icons -->
+  <g transform="translate(520,360)">
+    <circle cx="18" cy="-18" r="16" fill="#ffddcc" />
+    <rect x="4" y="-4" width="28" height="40" rx="6" fill="#0d7d8a" />
+  </g>
+
+  <!-- shadow -->
+  <ellipse cx="400" cy="440" rx="220" ry="28" fill="#000" opacity="0.05" />
+</svg>

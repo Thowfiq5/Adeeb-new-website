@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Center | ADEEB GROUP</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --media-primary: #349da7;
+            --media-secondary: #2d858b;
+            --media-gradient: linear-gradient(135deg, var(--media-primary) 0%, var(--media-secondary) 100%);
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-pulse-once {
+            animation: pulse 1s ease-in-out;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-shimmer {
+            background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+            background-size: 800px 104px;
+            animation: shimmer 1.5s linear infinite;
+        }
+
+        /* Staggered Animation Delays */
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-4 {
+            animation-delay: 0.4s;
+        }
+
+        .animate-delay-5 {
+            animation-delay: 0.5s;
+        }
+
+        .animate-delay-6 {
+            animation-delay: 0.6s;
+        }
+
+        /* Page Styles */
+        .page-header {
+            padding: 180px 0 100px;
+            background: var(--media-gradient);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMyNTc1ZmMiIG9wYWNpdHk9IjAuMSIvPjxwYXRoIGQ9Ik0wIDUwMEw1MDAgMTAwMEwxMDAwIDUwMEw1MDAgMFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI1NzVmYyIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjEiLz48L3N2Zz4=');
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .media-tabs {
+            background: var(--gray-very-light);
+            padding: 20px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray-dark);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--white);
+            border-color: var(--media-primary);
+            color: var(--media-primary);
+            box-shadow: 0 5px 15px rgba(13, 143, 139, 0.1);
+        }
+
+        .tab-btn i {
+            font-size: 1.2rem;
+        }
+
+        .tab-content {
+            padding: 60px 0;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 12px;
+            background: var(--media-primary);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .news-content h3 {
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--media-primary);
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 12px;
+        }
+
+        .btn-media {
+            background: var(--media-gradient);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-media:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .event-date {
+            background: var(--media-gradient);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .event-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-month {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .event-content {
+            padding: 25px;
+        }
+
+        .event-time {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--media-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .event-content h3 {
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-medium);
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .event-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: var(--gray-very-light);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Video Gallery */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-thumbnail {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.1);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--media-primary);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .video-play-btn {
+            background: var(--media-primary);
+            color: var(--white);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-duration {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            background: var(--gray-very-light);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray-medium);
+            margin-bottom: 10px;
+        }
+
+        .video-content h3 {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .video-views {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Modal for Video */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(200, 200, 200, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 800px;
+            background: transparent;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Media Archive Button */
+        .media-archive {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--gray-very-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-header h2 {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--media-primary);
+        }
+
+        @media (max-width: 768px) {
+            .media-tabs {
+                top: 0;
+                position: relative;
+            }
+
+            .tab-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .news-grid,
+            .events-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                padding: 140px 0 80px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="../index.html">
+                        <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="who-we-are.html">Who We Are</a></li>
+                                <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                                <li><a href="our-commitment.html">Our Commitment</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="facility-management.html" class="fm-color">Facility Management</a></li>
+                                <li><a href="it-services.html" class="it-color">IT Services</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="media.html" class="active">Media</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li class="dropdown">
+                            <a href="#">Contact <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="../vendor-registration.html" class="vendor-color">Vendor Registration</a>
+                                </li>
+                                <li><a href="../index.html#enquiry-section">Business Enquiry</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../admin-hub.html">Admin</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="animate-fade-in-up">Media Center</h1>
+            <p class="animate-fade-in-up animate-delay-1">Stay updated with our latest news, events, and video content
+                showcasing our expertise in integrated business solutions.</p>
+        </div>
+    </section>
+
+    <!-- Media Tabs Navigation -->
+    <section class="media-tabs">
+        <div class="container">
+            <div class="tab-nav">
+                <button class="tab-btn active animate-fade-in-up animate-delay-1" data-tab="news">
+                    <i class="fas fa-newspaper"></i>
+                    <span>News & Updates</span>
+                </button>
+                <button class="tab-btn animate-fade-in-up animate-delay-2" data-tab="events">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Events</span>
+                </button>
+                <button class="tab-btn animate-fade-in-up animate-delay-3" data-tab="videos">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Video Gallery</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Content -->
+    <section class="tab-content">
+        <div class="container">
+            <!-- News Tab -->
+            <div class="tab-pane active" id="news">
+                <div class="section-header">
+                    <h2 class="animate-fade-in-up">Latest News & Updates</h2>
+                    <p class="animate-fade-in-up animate-delay-1">Stay informed about our latest projects, achievements,
+                        and industry insights</p>
+                </div>
+
+                <div class="news-grid">
+                    <!-- News Item 1 -->
+                    <div class="news-card animate-fade-in-up animate-delay-1">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Award Ceremony">
+                            <div class="news-category">Award</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">
+                                <i class="far fa-calendar"></i>
+                                <span>March 15, 2024</span>
+                            </div>
+                            <h3>ADEEB GROUP Wins Best Integrated Services Provider 2024</h3>
+                            <p class="news-excerpt">Recognized for excellence in integrating facility management and IT
+                                services for corporate clients across the region. Our innovative approach has set new
+                                industry standards.</p>
+                            <a href="#" class="read-more">
+                                Read Full Story
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- News Item 2 -->
+                    <div class="news-card animate-fade-in-up animate-delay-2">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Partnership Meeting">
+                            <div class="news-category">Partnership</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">
+                                <i class="far fa-calendar"></i>
+                                <span>March 10, 2024</span>
+                            </div>
+                            <h3>Strategic Partnership with Global Tech Solutions</h3>
+                            <p class="news-excerpt">Announcing our new partnership to deliver enhanced cybersecurity and
+                                cloud infrastructure services to enterprise clients. This collaboration will
+                                revolutionize our service offerings.</p>
+                            <a href="#" class="read-more">
+                                Read Full Story
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- News Item 3 -->
+                    <div class="news-card animate-fade-in-up animate-delay-3">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Green Initiative">
+                            <div class="news-category">Sustainability</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">
+                                <i class="far fa-calendar"></i>
+                                <span>March 5, 2024</span>
+                            </div>
+                            <h3>Launch of Green Facility Management Initiative</h3>
+                            <p class="news-excerpt">Introducing our new sustainable facility management program aimed at
+                                reducing carbon footprint by 40% for clients. Our eco-friendly solutions are setting new
+                                benchmarks.</p>
+                            <a href="#" class="read-more">
+                                Read Full Story
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- News Item 4 -->
+                    <div class="news-card animate-fade-in-up animate-delay-4">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Office Expansion">
+                            <div class="news-category">Expansion</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">
+                                <i class="far fa-calendar"></i>
+                                <span>February 28, 2024</span>
+                            </div>
+                            <h3>New Regional Office Opens in Dubai</h3>
+                            <p class="news-excerpt">Expanding our Middle East presence with a new state-of-the-art
+                                regional office in Dubai, equipped with advanced monitoring and control systems for both
+                                FM and IT services.</p>
+                            <a href="#" class="read-more">
+                                Read Full Story
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- News Item 5 -->
+                    <div class="news-card animate-fade-in-up animate-delay-5">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Technology Innovation">
+                            <div class="news-category">Innovation</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">
+                                <i class="far fa-calendar"></i>
+                                <span>February 20, 2024</span>
+                            </div>
+                            <h3>AI-Powered Facility Management Platform Launch</h3>
+                            <p class="news-excerpt">Introducing our proprietary AI platform that predicts maintenance
+                                needs, optimizes energy usage, and enhances security across integrated facility and IT
+                                systems.</p>
+                            <a href="#" class="read-more">
+                                Read Full Story
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- News Item 6 -->
+                    <div class="news-card animate-fade-in-up animate-delay-6">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Community Service">
+                            <div class="news-category">Community</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">
+                                <i class="far fa-calendar"></i>
+                                <span>February 15, 2024</span>
+                            </div>
+                            <h3>Tech Training Program for Local Youth</h3>
+                            <p class="news-excerpt">Launching a comprehensive training program to equip local youth with
+                                skills in both facility management and information technology, creating new career
+                                pathways.</p>
+                            <a href="#" class="read-more">
+                                Read Full Story
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-archive">
+                    <a href="#" class="btn btn-media">
+                        <i class="fas fa-archive"></i>
+                        View All News Articles
+                    </a>
+                </div>
+            </div>
+
+            <!-- Events Tab -->
+            <div class="tab-pane" id="events">
+                <div class="section-header">
+                    <h2 class="animate-fade-in-up">Upcoming Events</h2>
+                    <p class="animate-fade-in-up animate-delay-1">Join us at our upcoming events, webinars, and
+                        conferences</p>
+                </div>
+
+                <div class="events-grid">
+                    <!-- Event 1 -->
+                    <div class="event-card animate-fade-in-up animate-delay-1">
+                        <div class="event-date">
+                            <div class="event-day">28</div>
+                            <div class="event-month">March</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">
+                                <i class="fas fa-users"></i>
+                                Conference
+                            </div>
+                            <div class="event-time">
+                                <i class="far fa-clock"></i>
+                                9:00 AM - 4:00 PM
+                            </div>
+                            <h3>Facility Management Technology Summit 2024</h3>
+                            <p>Join industry leaders and experts as we explore the latest technologies shaping the
+                                future of facility management. Featuring keynote speeches, panel discussions, and
+                                technology demonstrations.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Convention Center, Dubai</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="event-card animate-fade-in-up animate-delay-2">
+                        <div class="event-date">
+                            <div class="event-day">15</div>
+                            <div class="event-month">April</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">
+                                <i class="fas fa-video"></i>
+                                Webinar
+                            </div>
+                            <div class="event-time">
+                                <i class="far fa-clock"></i>
+                                2:00 PM - 5:00 PM
+                            </div>
+                            <h3>Cybersecurity Best Practices Webinar</h3>
+                            <p>Free webinar on implementing effective cybersecurity measures for integrated business
+                                environments. Learn from our security experts and get your questions answered.</p>
+                            <div class="event-location">
+                                <i class="fas fa-video"></i>
+                                <span>Virtual Event - Zoom</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="event-card animate-fade-in-up animate-delay-3">
+                        <div class="event-date">
+                            <div class="event-day">05</div>
+                            <div class="event-month">May</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">
+                                <i class="fas fa-network-wired"></i>
+                                Workshop
+                            </div>
+                            <div class="event-time">
+                                <i class="far fa-clock"></i>
+                                10:00 AM - 6:00 PM
+                            </div>
+                            <h3>IT & Facility Integration Conference</h3>
+                            <p>Annual conference focusing on the convergence of IT infrastructure and facility
+                                management. Network with professionals and discover integrated solutions.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Tech Park Auditorium, Riyadh</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Event 4 -->
+                    <div class="event-card animate-fade-in-up animate-delay-4">
+                        <div class="event-date">
+                            <div class="event-day">18</div>
+                            <div class="event-month">May</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">
+                                <i class="fas fa-graduation-cap"></i>
+                                Training
+                            </div>
+                            <div class="event-time">
+                                <i class="far fa-clock"></i>
+                                9:00 AM - 5:00 PM
+                            </div>
+                            <h3>Smart Building Management Training</h3>
+                            <p>Hands-on training session on managing smart building systems, IoT integration, and energy
+                                optimization techniques for facility managers.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>ADEEB GROUP Training Center</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Event 5 -->
+                    <div class="event-card animate-fade-in-up animate-delay-5">
+                        <div class="event-date">
+                            <div class="event-day">12</div>
+                            <div class="event-month">June</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">
+                                <i class="fas fa-leaf"></i>
+                                Seminar
+                            </div>
+                            <div class="event-time">
+                                <i class="far fa-clock"></i>
+                                1:00 PM - 4:00 PM
+                            </div>
+                            <h3>Sustainable Facilities Seminar</h3>
+                            <p>Learn about green building practices, renewable energy integration, and sustainable
+                                facility management strategies for reducing environmental impact.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Green Tech Center, Abu Dhabi</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Event 6 -->
+                    <div class="event-card animate-fade-in-up animate-delay-6">
+                        <div class="event-date">
+                            <div class="event-day">25</div>
+                            <div class="event-month">June</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">
+                                <i class="fas fa-handshake"></i>
+                                Networking
+                            </div>
+                            <div class="event-time">
+                                <i class="far fa-clock"></i>
+                                6:00 PM - 9:00 PM
+                            </div>
+                            <h3>Industry Leaders Networking Dinner</h3>
+                            <p>An exclusive networking event for industry leaders to discuss trends, challenges, and
+                                opportunities in integrated facility and IT management.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Grand Hotel Ballroom, Doha</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-archive">
+                    <a href="#" class="btn btn-media">
+                        <i class="fas fa-calendar-check"></i>
+                        View All Events
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video Gallery Tab -->
+            <div class="tab-pane" id="videos">
+                <div class="section-header">
+                    <h2 class="animate-fade-in-up">Video Gallery</h2>
+                    <p class="animate-fade-in-up animate-delay-1">Watch our project showcases, client testimonials, and
+                        expert interviews</p>
+                </div>
+
+                <div class="video-grid">
+                    <!-- Video 1 -->
+                    <div class="video-card animate-fade-in-up animate-delay-1"
+                        data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Smart Office">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                4:32
+                            </div>
+                            <h3>Smart Office Transformation Project</h3>
+                            <p>See how we transformed a traditional office into a smart, integrated workspace with IoT
+                                sensors and automation systems.</p>
+                            <div class="video-views">
+                                <i class="far fa-eye"></i>
+                                1,245 views
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card animate-fade-in-up animate-delay-2"
+                        data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Client Testimonial">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                6:15
+                            </div>
+                            <h3>Client Success Story: Global Corporation</h3>
+                            <p>Hear from our satisfied clients about how our integrated solutions improved their
+                                operations and reduced costs.</p>
+                            <div class="video-views">
+                                <i class="far fa-eye"></i>
+                                2,187 views
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card animate-fade-in-up animate-delay-3"
+                        data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="IT Operations">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                8:45
+                            </div>
+                            <h3>Behind the Scenes: Our IT Operations Center</h3>
+                            <p>Take a tour of our state-of-the-art IT operations and monitoring center that supports
+                                24/7 facility management.</p>
+                            <div class="video-views">
+                                <i class="far fa-eye"></i>
+                                3,542 views
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 4 -->
+                    <div class="video-card animate-fade-in-up animate-delay-4"
+                        data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Sustainability">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                5:20
+                            </div>
+                            <h3>Sustainable Facility Management in Action</h3>
+                            <p>Learn about our green initiatives and sustainable practices that help clients reduce
+                                their environmental impact.</p>
+                            <div class="video-views">
+                                <i class="far fa-eye"></i>
+                                1,876 views
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 5 -->
+                    <div class="video-card animate-fade-in-up animate-delay-5"
+                        data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Technology">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                7:30
+                            </div>
+                            <h3>Technology Integration: FM & IT Synergy</h3>
+                            <p>Discover how we seamlessly integrate facility management systems with IT infrastructure
+                                for optimal performance.</p>
+                            <div class="video-views">
+                                <i class="far fa-eye"></i>
+                                2,934 views
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 6 -->
+                    <div class="video-card animate-fade-in-up animate-delay-6"
+                        data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Team">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-duration">
+                                <i class="far fa-clock"></i>
+                                3:45
+                            </div>
+                            <h3>Meet Our Expert Team</h3>
+                            <p>Get to know the professionals behind ADEEB GROUP's success and their expertise in
+                                integrated business solutions.</p>
+                            <div class="video-views">
+                                <i class="far fa-eye"></i>
+                                1,523 views
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-archive">
+                    <a href="#" class="btn btn-media">
+                        <i class="fas fa-film"></i>
+                        View All Videos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="video-container" id="videoContainer">
+                <!-- Video will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col animate-on-scroll">
+                    <div class="footer-logo">
+                        <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </div>
+                    <p>Your trusted partner for integrated Facility Management and IT
+                        Services solutions.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/adeeb-group-930a31342/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/AdeebFM"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/adeebgroupllc"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="contact-info-card">
+                        <h4>Contact Info</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 500</li>
+                            <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> info@adeebgroup.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="facility-management.html" class="fm-color">Facility Management</a></li>
+                        <li><a href="it-services.html" class="it-color">IT Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="who-we-are.html">Who We Are</a></li>
+                        <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="contact.html"><i class="fas fa-phone-alt"></i>Contact Us</a></li>
+                        <li><a href="../vendor-registration.html" class="vendor-color"><i
+                                    class="fas fa-clipboard-check"></i>Vendor Registration</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope-open-text"></i>Business Enquiry</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ADEEB GROUP. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Media Page JavaScript
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            const videoModal = document.getElementById('videoModal');
+            const videoContainer = document.getElementById('videoContainer');
+            const closeModal = document.getElementById('closeModal');
+
+            // Tab switching functionality
+            tabBtns.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetTab = this.getAttribute('data-tab');
+
+                    // Remove active class from all buttons and panes
+                    tabBtns.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                    // Add active class to current button and corresponding pane
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Video Modal functionality
+            const videoCards = document.querySelectorAll('.video-card');
+
+            videoCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const videoUrl = this.getAttribute('data-video');
+                    videoContainer.innerHTML = `<iframe src="${videoUrl}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                    videoModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal
+            closeModal.addEventListener('click', function () {
+                videoModal.classList.remove('active');
+                videoContainer.innerHTML = '';
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside
+            videoModal.addEventListener('click', function (e) {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    videoContainer.innerHTML = '';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                    videoModal.classList.remove('active');
+                    videoContainer.innerHTML = '';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all animated elements
+            document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Add hover effects to cards
+            const newsCards = document.querySelectorAll('.news-card');
+            const eventCards = document.querySelectorAll('.event-card');
+            const videoCardsHover = document.querySelectorAll('.video-card');
+
+            const addHoverEffect = (cards) => {
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', function () {
+                        this.classList.add('animate-pulse-once');
+                    });
+
+                    card.addEventListener('mouseleave', function () {
+                        this.classList.remove('animate-pulse-once');
+                    });
+                });
+            };
+
+            addHoverEffect(newsCards);
+            addHoverEffect(eventCards);
+            addHoverEffect(videoCardsHover);
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

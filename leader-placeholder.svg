@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0d6efd"/>
+      <stop offset="100%" stop-color="#6610f2"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#f3f4f6"/>
+  <g transform="translate(200,160)">
+    <circle cx="0" cy="-20" r="70" fill="url(#g)" opacity="0.95"/>
+    <circle cx="0" cy="-20" r="64" fill="#fff" opacity="0.08"/>
+    <path d="M-60 90c0-33 27-60 60-60s60 27 60 60" fill="#e2e8f0"/>
+    <circle cx="0" cy="-20" r="46" fill="#fff" opacity="0.12"/>
+    <g fill="#fff" opacity="0.9">
+      <ellipse cx="0" cy="110" rx="90" ry="28"/>
+    </g>
+  </g>
+  <text x="200" y="360" font-family="Inter, Arial, sans-serif" font-size="20" text-anchor="middle" fill="#6b7280">Leader Photo Placeholder</text>
+</svg>

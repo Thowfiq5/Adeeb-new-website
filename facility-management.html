@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facility Management Services | ADEEB GROUP</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            70% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes flipInY {
+            from {
+                transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: perspective(400px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes hammer {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-15deg);
+            }
+
+            75% {
+                transform: rotate(15deg);
+            }
+        }
+
+        @keyframes wrench {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(90deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            75% {
+                transform: rotate(270deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes sweep {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-pulse-once {
+            animation: pulse 1s ease-in-out;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slide-in-top {
+            animation: slideInFromTop 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-zoom-in {
+            animation: zoomIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-flip-in-y {
+            animation: flipInY 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-hammer {
+            animation: hammer 0.5s ease-in-out;
+        }
+
+        .animate-wrench {
+            animation: wrench 2s linear infinite;
+        }
+
+        /* Staggered Animation Delays */
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-4 {
+            animation-delay: 0.4s;
+        }
+
+        .animate-delay-5 {
+            animation-delay: 0.5s;
+        }
+
+        .animate-delay-6 {
+            animation-delay: 0.6s;
+        }
+
+        /* Page Styles with Animations */
+        .page-header {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--fm-primary) 0%, var(--fm-secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwZDhhNGYiIG9wYWNpdHk9IjAuMSIvPjxwYXRoIGQ9Ik0yMDAgMjAwTDUwMCA1MDAgODAwIDIwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQ4YTRmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMSIvPjxyZWN0IHg9IjMwMCIgeT0iMzAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQ4YTRmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .services-detail {
+            padding: var(--section-padding);
+        }
+
+        .service-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .service-detail-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.5s ease;
+            border-left: 4px solid var(--fm-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(13, 138, 79, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-detail-card:hover::before {
+            left: 100%;
+        }
+
+        .service-detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-left-width: 8px;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--white);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-detail-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-detail-card:nth-child(1):hover .service-icon i {
+            animation: wrench 1s ease-in-out;
+        }
+
+        .service-detail-card:nth-child(2):hover .service-icon i {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .service-detail-card:nth-child(3):hover .service-icon i {
+            animation: sweep 1s ease-in-out;
+        }
+
+        .service-detail-card:nth-child(4):hover .service-icon i {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .service-detail-card:nth-child(5):hover .service-icon i {
+            animation: hammer 0.5s ease-in-out;
+        }
+
+        .service-detail-card:nth-child(6):hover .service-icon i {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .service-detail-card:nth-child(7):hover .service-icon i {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .service-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .service-detail-card:hover .service-icon::after {
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-detail-card h3 {
+            margin-bottom: 15px;
+            color: var(--fm-primary);
+            transition: color 0.3s ease;
+        }
+
+        .service-detail-card:hover h3 {
+            color: var(--fm-secondary);
+        }
+
+        .service-detail-card ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .service-detail-card li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-detail-card:hover li {
+            transform: translateX(5px);
+        }
+
+        .service-detail-card li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--fm-primary);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .service-detail-card:hover li:before {
+            color: var(--fm-secondary);
+        }
+
+        .process-steps {
+            background: var(--gray-very-light);
+            padding: var(--section-padding);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            counter-reset: step-counter;
+        }
+
+        .step-item {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-item:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--fm-primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover:before {
+            background: var(--fm-secondary);
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .step-item i {
+            font-size: 3rem;
+            color: var(--fm-primary);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover i {
+            color: var(--fm-secondary);
+            transform: scale(1.1);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--fm-primary) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            color: var(--white);
+        }
+
+        .benefit-item:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-item i {
+            font-size: 3rem;
+            color: var(--fm-primary);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover i {
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .benefit-item h4 {
+            transition: color 0.3s ease;
+        }
+
+        .benefit-item:hover h4 {
+            color: var(--white);
+        }
+
+        /* Vendor Registration Section */
+        .vendor-registration {
+            padding: var(--section-padding);
+            background: var(--white);
+        }
+
+        .vendor-registration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .vendor-info {
+            background: var(--gray-very-light);
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .vendor-benefits {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .vendor-benefits li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .vendor-benefits li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            background: var(--fm-primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .vendor-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--gray-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--gray-very-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--fm-primary);
+            box-shadow: 0 0 0 3px rgba(13, 138, 79, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .services-checklist {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .file-upload {
+            border: 2px dashed var(--gray-very-light);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            border-color: var(--fm-primary);
+            background: rgba(13, 138, 79, 0.05);
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            color: var(--fm-primary);
+            margin-bottom: 10px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .cta-section {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, var(--fm-primary) 0%, var(--fm-secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwZDhhNGYiIG9wYWNpdHk9IjAuMSIvPjxwYXRoIGQ9Ik0yMDAgMjAwTDUwMCA1MDAgODAwIDIwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQ4YTRmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMSIvPjxyZWN0IHg9IjMwMCIgeT0iMzAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQ4YTRmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .fm-bg {
+            background: linear-gradient(135deg, var(--fm-primary), var(--fm-secondary));
+        }
+
+        @media (max-width: 768px) {
+            .service-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vendor-registration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .services-checklist {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="../index.html">
+                        <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="who-we-are.html">Who We Are</a></li>
+                                <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                                <li><a href="our-commitment.html">Our Commitment</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="active">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="facility-management.html" class="fm-color active">Facility Management</a>
+                                </li>
+                                <li><a href="it-services.html" class="it-color">IT Services</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li class="dropdown">
+                            <a href="#">Contact <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="../vendor-registration.html" class="vendor-color">Vendor Registration</a>
+                                </li>
+                                <li><a href="../index.html#enquiry-section">Business Enquiry</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../admin-hub.html">Admin</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="animate-fade-in-up">Facility Management Services</h1>
+            <p class="animate-fade-in-up animate-delay-1">Comprehensive solutions to
+                optimize your physical workspace,
+                enhance efficiency, and ensure operational excellence</p>
+        </div>
+    </section>
+
+    <!-- Services Detail -->
+    <section class="services-detail">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-fade-in-up">Our Facility Management Solutions</h2>
+                <p class="animate-fade-in-up animate-delay-1">End-to-end services designed to maintain, optimize, and
+                    transform your physical infrastructure</p>
+            </div>
+
+            <div class="service-detail-grid">
+                <div class="service-detail-card animate-flip-in-y animate-delay-1">
+                    <div class="service-icon fm-bg">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Maintenance & Repairs</h3>
+                    <p>Comprehensive maintenance programs to ensure your facilities operate at peak efficiency.</p>
+                    <ul>
+                        <li>Preventive maintenance scheduling</li>
+                        <li>Emergency repair services</li>
+                        <li>Equipment lifecycle management</li>
+                        <li>Vendor management</li>
+                        <li>24/7 emergency response</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-fm">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-2">
+                    <div class="service-icon fm-bg">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security Services</h3>
+                    <p>Advanced security solutions to protect your people, assets, and operations.</p>
+                    <ul>
+                        <li>Access control systems</li>
+                        <li>Surveillance monitoring</li>
+                        <li>Security personnel management</li>
+                        <li>Emergency response planning</li>
+                        <li>Risk assessment</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-fm">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-3">
+                    <div class="service-icon fm-bg">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Cleaning & Sanitation</h3>
+                    <p>Professional cleaning services for healthy, safe, and productive environments.</p>
+                    <ul>
+                        <li>Daily cleaning services</li>
+                        <li>Deep cleaning programs</li>
+                        <li>Sanitization protocols</li>
+                        <li>Waste management</li>
+                        <li>Green cleaning solutions</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-fm">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-4">
+                    <div class="service-icon fm-bg">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Energy Management</h3>
+                    <p>Optimize energy consumption and reduce operational costs through smart solutions.</p>
+                    <ul>
+                        <li>Energy efficiency audits</li>
+                        <li>HVAC optimization</li>
+                        <li>Lighting upgrades</li>
+                        <li>Utility management</li>
+                        <li>Sustainability reporting</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-fm">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-5">
+                    <div class="service-icon fm-bg">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>Project Management</h3>
+                    <p>End-to-end project management for facility upgrades and renovations.</p>
+                    <ul>
+                        <li>Space planning</li>
+                        <li>Vendor coordination</li>
+                        <li>Budget management</li>
+                        <li>Timeline oversight</li>
+                        <li>Quality control</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-fm">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-6">
+                    <div class="service-icon fm-bg">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Compliance & Safety</h3>
+                    <p>Ensure regulatory compliance and maintain safe working environments.</p>
+                    <ul>
+                        <li>OSHA compliance</li>
+                        <li>Safety training programs</li>
+                        <li>Environmental compliance</li>
+                        <li>Documentation management</li>
+                        <li>Audit preparation</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-fm">Get Service Details</a>
+                </div>
+
+                <div class="service-detail-card animate-flip-in-y animate-delay-1">
+                    <div class="service-icon fm-bg">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Customer Service Desk Support</h3>
+                    <p>Adeeb Group’s maintenance teams are reachable via a 24/7 Customer Service Desk 800 ADEEB (23332).
+                    </p>
+                    <ul>
+                        <li>ITIL certified Service Desk logging</li>
+                        <li>SLA tracking and follow-up</li>
+                        <li>Backed by experienced certified engineers</li>
+                        <li>Immediate response, day or night</li>
+                        <li>Professional helpdesk support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-fm">Contact Service Desk</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Process Steps -->
+    <section class="process-steps">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-fade-in-up">Our Facility Management Process</h2>
+                <p class="animate-fade-in-up animate-delay-1">A systematic approach to delivering exceptional facility
+                    management services</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-item animate-fade-in-up animate-delay-1">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Assessment & Planning</h3>
+                    <p>Comprehensive evaluation of your facility needs and development of customized management plans
+                    </p>
+                </div>
+
+                <div class="step-item animate-fade-in-up animate-delay-2">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Implementation</h3>
+                    <p>Deployment of skilled teams and advanced technologies to execute facility management strategies
+                    </p>
+                </div>
+
+                <div class="step-item animate-fade-in-up animate-delay-3">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Monitoring & Optimization</h3>
+                    <p>Continuous monitoring of facility performance and implementation of improvement initiatives</p>
+                </div>
+
+                <div class="step-item animate-fade-in-up animate-delay-4">
+                    <i class="fas fa-sync-alt"></i>
+                    <h3>Continuous Improvement</h3>
+                    <p>Regular reviews and updates to ensure ongoing optimization and adaptation to changing needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="services-detail">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-fade-in-up">Benefits of Our Facility Management</h2>
+                <p class="animate-fade-in-up animate-delay-1">Transform your facility operations with our comprehensive
+                    management solutions</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item animate-fade-in-up animate-delay-1">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h4>Cost Reduction</h4>
+                    <p>Optimize operational expenses through efficient resource management and preventive maintenance
+                    </p>
+                </div>
+
+                <div class="benefit-item animate-fade-in-up animate-delay-2">
+                    <i class="fas fa-chart-pie"></i>
+                    <h4>Increased Efficiency</h4>
+                    <p>Streamline operations and improve productivity with well-maintained and optimized facilities</p>
+                </div>
+
+                <div class="benefit-item animate-fade-in-up animate-delay-3">
+                    <i class="fas fa-user-shield"></i>
+                    <h4>Enhanced Safety</h4>
+                    <p>Ensure compliance with safety regulations and create secure working environments</p>
+                </div>
+
+                <div class="benefit-item animate-fade-in-up animate-delay-4">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Improved Performance</h4>
+                    <p>Maximize facility uptime and performance through proactive maintenance strategies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="animate-fade-in-up">Ready to Optimize Your Facility Operations?</h2>
+                <p class="animate-fade-in-up animate-delay-1">Contact us today for a comprehensive facility assessment
+                    and customized management solution.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary animate-fade-in-up animate-delay-2">Get Facility
+                        Assessment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col animate-on-scroll">
+                    <div class="footer-logo">
+                        <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </div>
+                    <p>Your trusted partner for integrated Facility Management and IT
+                        Services solutions.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/adeeb-group-930a31342/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/AdeebFM"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/adeebgroupllc"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="contact-info-card">
+                        <h4>Contact Info</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 500</li>
+                            <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> info@adeebgroup.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="facility-management.html" class="fm-color">Facility Management</a></li>
+                        <li><a href="it-services.html" class="it-color">IT Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="who-we-are.html">Who We Are</a></li>
+                        <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="contact.html"><i class="fas fa-phone-alt"></i>Contact Us</a></li>
+                        <li><a href="../vendor-registration.html" class="vendor-color"><i
+                                    class="fas fa-clipboard-check"></i>Vendor Registration</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope-open-text"></i>Business Enquiry</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ADEEB GROUP. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all animated elements
+            document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-flip-in-y, .animate-bounce-in, .animate-slide-in-top, .animate-zoom-in').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Add special effects for facility service cards
+            const serviceCards = document.querySelectorAll('.service-detail-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.classList.add('animate-pulse-once');
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.classList.remove('animate-pulse-once');
+                });
+            });
+
+            // Add floating animation to step items on hover
+            const stepItems = document.querySelectorAll('.step-item');
+            stepItems.forEach(item => {
+                item.addEventListener('mouseenter', function () {
+                    this.classList.add('animate-float');
+                });
+
+                item.addEventListener('mouseleave', function () {
+                    this.classList.remove('animate-float');
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

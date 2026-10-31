@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who We Are | ADEEB GROUP</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        .page-header {
+            padding: 100px 0 40px;
+            background: linear-gradient(135deg, var(--primary-dark, #1c797c) 0%, #1e3a5f 100%);
+            color: white;
+        }
+
+        .page-header .header-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .page-header .header-content h1 {
+            margin: 0 0 12px 0;
+            font-size: 2.6rem;
+        }
+
+        .who-hero-image {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: white;
+            overflow: hidden;
+        }
+
+        .who-hero-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .content-article {
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--gray-dark, #29524e);
+            font-size: 1rem;
+        }
+
+        .content-article h2 {
+            margin-bottom: 20px;
+        }
+
+        .content-article p {
+            margin-bottom: 1rem;
+        }
+
+        /* Leadership / Team Profiles */
+        .leadership-section {
+            padding: var(--section-padding);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+
+        .leader-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .leader-card h4 {
+            margin: 8px 0 0;
+            font-size: 1.05rem;
+            color: var(--primary-dark);
+        }
+
+        .leader-card p.leader-title {
+            margin: 2px 0 8px;
+            font-size: 0.95rem;
+            color: var(--gray-medium);
+        }
+
+        .leader-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin-top: 12px;
+            border: 4px solid rgba(0, 0, 0, 0.04);
+            background: var(--gray-very-light);
+        }
+
+        @media (max-width: 768px) {
+            .page-header .header-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .who-hero-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .leader-card img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="../index.html">
+                        <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="active">About Us <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="who-we-are.html" class="active">Who We Are</a></li>
+                                <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                                <li><a href="our-commitment.html">Our Commitment</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="facility-management.html" class="fm-color">Facility Management</a></li>
+                                <li><a href="it-services.html" class="it-color">IT Services</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li class="dropdown">
+                            <a href="#">Contact <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="../vendor-registration.html" class="vendor-color">Vendor Registration</a>
+                                </li>
+                                <li><a href="../index.html#enquiry-section">Business Enquiry</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../admin-hub.html">Admin</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-toggle"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="header-grid">
+                <div class="header-content">
+                    <h1 id="who_header_title">Who We Are</h1>
+                    <p id="who_header_subtitle">Learn about ADEEB GROUP's mission, certifications and approach to
+                        integrated facility management.</p>
+                </div>
+                <div class="header-visual">
+                    <div class="who-hero-image" aria-hidden="true">
+                        <img src="../images/who-hero.svg" alt="Who we are illustration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <article class="content-article">
+                <h2>About ADEEB GROUP</h2>
+                <p>Adeeb group is a leading IMS-certified Organization with ISO 9001, 14001, 41001, and ISO 45001, ISO
+                    41001 (Facility Management), ISO 50001 (Energy Management), OSHAD, and TQM (Total Quality
+                    Management). Established in 1994 and headquartered in Abu Dhabi, we deliver integrated facility
+                    management and MEP contracting services across multiple sectors in the UAE and Seychelles.</p>
+
+                <p>With decades of experience, we provide tailored solutions for residential, commercial and industrial
+                    clients. Our teams of engineers and technicians focus on quality, safety, and sustainable outcomes
+                    that reduce costs and improve asset performance.</p>
+
+                <p>Our Check Green initiative promotes eco-friendly methods, chemical-free cleaning, improved indoor air
+                    quality, and responsible waste management to reduce environmental impact while controlling costs.
+                </p>
+
+                <p>We partner with strategic consultants to develop energy-efficient measures and alternative energy
+                    solutions. From audits to implementation and operations, our systems integrate seamlessly into
+                    clients' core operations to deliver measurable results.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- CEO Message -->
+    <section class="content-section">
+        <div class="container">
+            <article class="content-article">
+                <div class="ceo-card" style="max-width:1000px;margin:0 auto 30px;">
+                    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+                        <img src="../images/leader-placeholder.svg" alt="CEO"
+                            style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(0,0,0,0.06)">
+                        <div>
+                            <h3 style="margin:0 0 6px">Chief Executive Officer</h3>
+                            <div style="color:var(--gray-medium)">John Doe</div>
+                        </div>
+                        <div style="margin-left:auto">
+                            <button id="ceo_message_toggle" class="btn" aria-expanded="false"
+                                aria-controls="ceo_message_content">Read CEO Message</button>
+                        </div>
+                    </div>
+
+                    <div id="ceo_message_content" class="ceo-message"
+                        style="display:none;margin-top:18px;border-left:4px solid rgba(0,0,0,0.04);padding:14px 18px;background:var(--white);">
+                        <!-- dynamic content inserted here -->
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-fade-in-up">Leadership</h2>
+                <p class="animate-fade-in-up animate-delay-1">Meet the leadership team driving our vision and delivery.
+                </p>
+            </div>
+
+            <div class="leadership-grid">
+                <div class="leader-card animate-fade-in-up animate-delay-1">
+                    <h4>John Doe</h4>
+                    <p class="leader-title">Chief Executive Officer</p>
+                    <img src="../images/leader-placeholder.svg" alt="John Doe - CEO">
+                </div>
+
+                <div class="leader-card animate-fade-in-up animate-delay-2">
+                    <h4>Jane Smith</h4>
+                    <p class="leader-title">Head of Operations</p>
+                    <img src="../images/leader-placeholder.svg" alt="Jane Smith - Head of Operations">
+                </div>
+
+                <div class="leader-card animate-fade-in-up animate-delay-3">
+                    <h4>Ahmed Khan</h4>
+                    <p class="leader-title">Head of Technology</p>
+                    <img src="../images/leader-placeholder.svg" alt="Ahmed Khan - Head of Technology">
+                </div>
+
+                <div class="leader-card animate-fade-in-up animate-delay-4">
+                    <h4>Maria Lopez</h4>
+                    <p class="leader-title">Head of Client Success</p>
+                    <img src="../images/leader-placeholder.svg" alt="Maria Lopez - Head of Client Success">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col animate-on-scroll">
+                    <div class="footer-logo">
+                        <img src="../images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </div>
+                    <p>Your trusted partner for integrated Facility Management and IT
+                        Services solutions.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/adeeb-group-930a31342/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/AdeebFM"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/adeebgroupllc"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="contact-info-card">
+                        <h4>Contact Info</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 500</li>
+                            <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> info@adeebgroup.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="facility-management.html" class="fm-color">Facility Management</a></li>
+                        <li><a href="it-services.html" class="it-color">IT Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="who-we-are.html">Who We Are</a></li>
+                        <li><a href="area-of-operation.html">Area Of Operation</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="contact.html"><i class="fas fa-phone-alt"></i>Contact Us</a></li>
+                        <li><a href="../vendor-registration.html" class="vendor-color"><i
+                                    class="fas fa-clipboard-check"></i>Vendor Registration</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope-open-text"></i>Business Enquiry</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ADEEB GROUP. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Apply siteEdits for Who We Are page (including dynamic CEO message)
+        (function () {
+            try {
+                const edits = JSON.parse(localStorage.getItem('siteEdits') || '{}');
+                const who = edits.who || {};
+                if (who.header_title) { const el = document.getElementById('who_header_title'); if (el) el.textContent = who.header_title; }
+                if (who.header_subtitle) { const el = document.getElementById('who_header_subtitle'); if (el) el.textContent = who.header_subtitle; }
+                if (who.footer_blurb) { const el = document.getElementById('footer_blurb'); if (el) el.textContent = who.footer_blurb; }
+
+                // CEO message (supports simple HTML)
+                const defaultCeo = '<p>Welcome to ADEEB GROUP. Our mission is to deliver integrated facility management and MEP services with excellence and sustainability.</p>';
+                const ceoMessage = who.ceo_message || defaultCeo;
+                const ceoEl = document.getElementById('ceo_message_content');
+                if (ceoEl) {
+                    ceoEl.innerHTML = ceoMessage;
+                }
+
+                // Toggle behavior for CEO message
+                const toggle = document.getElementById('ceo_message_toggle');
+                if (toggle) {
+                    toggle.addEventListener('click', function () {
+                        const expanded = this.getAttribute('aria-expanded') === 'true';
+                        this.setAttribute('aria-expanded', String(!expanded));
+                        if (ceoEl) {
+                            if (expanded) {
+                                ceoEl.style.display = 'none';
+                                this.textContent = 'Read CEO Message';
+                            } else {
+                                ceoEl.style.display = 'block';
+                                this.textContent = 'Hide CEO Message';
+                            }
+                        }
+                    });
+                }
+            } catch (e) { console.warn('Failed to apply siteEdits.who', e); }
+        })();
+    </script>
+</body>
+
+</html>
