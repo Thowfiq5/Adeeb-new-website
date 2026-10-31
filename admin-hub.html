@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADEEB Admin Suite | Management Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2F7F87;
+            --primary-dark: #25666c;
+            --primary-light: rgba(47, 127, 135, 0.1);
+            --bg-sidebar: #1e293b;
+            --bg-main: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background: var(--bg-sidebar);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            transition: all 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 30px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-header img {
+            width: 32px;
+            filter: brightness(0) invert(1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            padding: 24px 12px;
+            flex: 1;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            margin-bottom: 4px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fca5a5;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 40px;
+        }
+
+        header.top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 999px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .user-profile img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e2e8f0;
+        }
+
+        /* Dashboard View */
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .grid-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .stat-card .label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .value {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Page Manager */
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .page-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .page-thumb {
+            height: 160px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-info {
+            padding: 20px;
+        }
+
+        .page-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .page-info p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-main);
+        }
+
+        /* Editor Modal (Simplified for now) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modal-footer {
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="images/48x48.svg" alt="Logo">
+            <h1>ADEEB ADMIN</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-link active" data-view="dashboard">
+                <i class="fas fa-th-large"></i> Dashboard
+            </a>
+            <a href="#" class="nav-link" data-view="pages">
+                <i class="fas fa-file-alt"></i> Page Manager
+            </a>
+            <a href="#" class="nav-link" data-view="vendors">
+                <i class="fas fa-users-cog"></i> Vendor Pipeline
+            </a>
+            <a href="#" class="nav-link" data-view="seo">
+                <i class="fas fa-search-dollar"></i> SEO & Meta
+            </a>
+            <a href="#" class="nav-link" data-view="media">
+                <i class="fas fa-images"></i> Media Gallery
+            </a>
+            <a href="#" class="nav-link" data-view="settings">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a class="logout-btn" onclick="logout()"><i class="fas fa-power-off"></i> Logout</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h2 id="view-title">Dashboard Overview</h2>
+            <div class="user-profile">
+                <img src="" alt="A">
+                <span id="admin-name">Admin User</span>
+            </div>
+        </header>
+
+        <!-- Dashboard View -->
+        <section id="view-dashboard" class="view-section active">
+            <div class="grid-stats">
+                <div class="stat-card">
+                    <div class="label">Total Pages</div>
+                    <div class="value" id="stat-pages">12</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Pending Vendors</div>
+                    <div class="value" id="stat-vendors">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">SEO Health</div>
+                    <div class="value">94%</div>
+                </div>
+            </div>
+
+            <h3>Recent Activity</h3>
+            <div class="stat-card" style="margin-top: 20px;">
+                <p style="color: var(--text-muted);">Database migration completed successfully. Welcome to the Advanced
+                    Admin Suite.</p>
+            </div>
+        </section>
+
+        <!-- Page Manager View -->
+        <section id="view-pages" class="view-section">
+            <div class="page-grid" id="page-list-container">
+                <!-- Pages will be injected here -->
+            </div>
+        </section>
+
+        <!-- Vendor Pipeline View -->
+        <section id="view-vendors" class="view-section">
+            <div class="stat-card">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="text-align: left; border-bottom: 2px solid var(--border);">
+                            <th style="padding: 12px;">Date</th>
+                            <th style="padding: 12px;">Company</th>
+                            <th style="padding: 12px;">Contact</th>
+                            <th style="padding: 12px;">Status</th>
+                            <th style="padding: 12px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vendor-list-container">
+                        <!-- Vendors will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SEO View -->
+        <section id="view-seo" class="view-section">
+            <div class="stat-card">
+                <p>Manage Meta Titles and Descriptions for all pages.</p>
+                <div id="seo-list-container"></div>
+            </div>
+        </section>
+
+        <!-- Media Gallery View -->
+        <section id="view-media" class="view-section">
+            <div class="stat-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h3>Image Library</h3>
+                    <button class="btn btn-primary" onclick="document.getElementById('media-upload').click()">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload New
+                    </button>
+                    <input type="file" id="media-upload" hidden accept="image/*" onchange="uploadImage(this)">
+                </div>
+                <div id="media-grid"
+                    style="display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap:16px;">
+                    <!-- Images injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings View -->
+        <section id="view-settings" class="view-section">
+            <div class="stat-card" style="max-width: 500px;">
+                <h3>Change Password</h3>
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" id="current-password">
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="new-password">
+                </div>
+                <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Editor Modal -->
+    <div id="editor-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Edit Page</h3>
+                <button class="btn btn-outline" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Form injected here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        let currentToken = localStorage.getItem('adminToken');
+        let allPages = [];
+        let allContent = {};
+
+        // Auth Check
+        if (!currentToken) {
+            window.location.href = 'admin-login.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initNavigation();
+            loadAllData();
+        });
+
+        function initNavigation() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const view = link.dataset.view;
+                    switchView(view);
+                });
+            });
+        }
+
+        function switchView(view) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+            document.getElementById(`view-${view}`).classList.add('active');
+            document.querySelector(`[data-view="${view}"]`).classList.add('active');
+
+                const titles = {
+                dashboard: 'Dashboard Overview',
+                pages: 'Page Management',
+                vendors: 'Vendor Pipeline',
+                seo: 'SEO & Meta Management',
+                media: 'Media Gallery',
+                settings: 'System Settings'
+            };
+            document.getElementById('view-title').innerText = titles[view];
+        }
+
+        async function loadAllData() {
+            try {
+                // Load Content
+                const contentRes = await fetch(`${API_BASE}/content`);
+                allContent = await contentRes.json();
+
+                // Load Pages
+                const pagesRes = await fetch(`${API_BASE}/pages`, {
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+                allPages = await pagesRes.json();
+
+                // Load Vendors
+                const vendorsRes = await fetch(`${API_BASE}/vendor-applications`);
+                const vendors = await vendorsRes.json();
+
+                renderPages();
+                renderSEO();
+                renderVendors(vendors);
+                updateStats(vendors.length);
+                loadMedia(); // Initial load
+            } catch (err) {
+                console.error('Failed to load data:', err);
+            }
+        }
+
+        function updateStats(vendorCount) {
+            document.getElementById('stat-pages').innerText = allPages.length;
+            document.getElementById('stat-vendors').innerText = vendorCount;
+        }
+
+        function renderVendors(vendors) {
+            const container = document.getElementById('vendor-list-container');
+            container.innerHTML = vendors.map(v => `
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 12px;">${v.date}</td>
+                    <td style="padding: 12px;"><strong>${v.company}</strong></td>
+                    <td style="padding: 12px;">${v.contact}</td>
+                    <td style="padding: 12px;">
+                        <span style="padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; background: ${v.status === 'pending' ? '#fef3c7' : '#dcfce7'}; color: ${v.status === 'pending' ? '#92400e' : '#166534'};">
+                            ${v.status.toUpperCase()}
+                        </span>
+                    </td>
+                    <td style="padding: 12px;">
+                        <button class="btn btn-outline" style="padding: 4px 8px;" onclick="updateVendorStatus(${v.id}, 'approved')">Approve</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.updateVendorStatus = async (id, status) => {
+            const res = await fetch(`${API_BASE}/vendor-applications/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${currentToken}`
+                },
+                body: JSON.stringify({ status })
+            });
+            if (res.ok) {
+                alert('Status updated!');
+                loadAllData();
+            }
+        };
+
+        function renderPages() {
+            const container = document.getElementById('page-list-container');
+            container.innerHTML = allPages.map(page => `
+                <div class="page-card">
+                    <div class="page-thumb"><i class="fas fa-file-code"></i></div>
+                    <div class="page-info">
+                        <h3>${page.title || page.slug}</h3>
+                        <p>${page.slug === 'index' ? 'Homepage' : 'Secondary Page'}</p>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="openPageEditor('${page.slug}')">
+                                <i class="fas fa-edit"></i> Edit Content
+                            </button>
+                            <a href="${page.slug === 'index' ? 'Index.html' : 'pages/' + page.slug + '.html'}" target="_blank" class="btn btn-outline">
+                                <i class="fas fa-external-link-alt"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSEO() {
+            const container = document.getElementById('seo-list-container');
+            container.innerHTML = allPages.map(page => `
+                <div class="stat-card" style="margin-bottom: 12px;">
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>${page.slug}</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">${page.meta_description || 'No description set'}</div>
+                        </div>
+                        <button class="btn btn-outline" onclick="openSEOEditor('${page.slug}')">Manage SEO</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.openPageEditor = (slug) => {
+            const pageData = allContent[slug] || {};
+            document.getElementById('modal-title').innerText = `Editing: ${slug}`;
+            const body = document.getElementById('modal-body');
+            body.innerHTML = Object.keys(pageData).map(key => `
+                <div class="form-group">
+                    <label>${key.replace(/_/g, ' ').toUpperCase()}</label>
+                    ${pageData[key].length > 60 ?
+                    `<textarea data-page="${slug}" data-key="${key}" rows="4">${pageData[key]}</textarea>` :
+                    `<input type="text" data-page="${slug}" data-key="${key}" value="${pageData[key]}">`
+                }
+                </div>
+            `).join('');
+
+            window.currentEditType = 'content';
+            window.currentEditSlug = slug;
+            document.getElementById('editor-modal').style.display = 'flex';
+        };
+
+        window.openSEOEditor = (slug) => {
+            const page = allPages.find(p => p.slug === slug);
+            document.getElementById('modal-title').innerText = `SEO: ${slug}`;
+            const body = document.getElementById('modal-body');
+            body.innerHTML = `
+                <div class="form-group">
+                    <label>Page Title</label>
+                    <input type="text" id="seo-title" value="${page.title || ''}">
+                </div>
+                <div class="form-group">
+                    <label>Meta Description</label>
+                    <textarea id="seo-meta" rows="4">${page.meta_description || ''}</textarea>
+                </div>
+            `;
+            window.currentEditType = 'seo';
+            window.currentEditSlug = slug;
+            document.getElementById('editor-modal').style.display = 'flex';
+        };
+
+        window.closeModal = () => {
+            document.getElementById('editor-modal').style.display = 'none';
+        };
+
+        window.saveChanges = async () => {
+            if (window.currentEditType === 'content') {
+                const inputs = document.querySelectorAll('#modal-body [data-key]');
+                const update = { [window.currentEditSlug]: {} };
+                inputs.forEach(inp => {
+                    update[window.currentEditSlug][inp.dataset.key] = inp.value;
+                });
+
+                const res = await fetch(`${API_BASE}/content`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentToken}`
+                    },
+                    body: JSON.stringify(update)
+                });
+
+                if (res.ok) {
+                    alert('Content saved successfully!');
+                    loadAllData();
+                    closeModal();
+                }
+            } else if (window.currentEditType === 'seo') {
+                const title = document.getElementById('seo-title').value;
+                const meta = document.getElementById('seo-meta').value;
+
+                const res = await fetch(`${API_BASE}/pages/${window.currentEditSlug}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentToken}`
+                    },
+                    body: JSON.stringify({ title, meta_description: meta })
+                });
+
+                if (res.ok) {
+                    alert('SEO updated successfully!');
+                    loadAllData();
+                    closeModal();
+                }
+            }
+        };
+
+        async function loadMedia() {
+            try {
+                const res = await fetch(`${API_BASE}/media`);
+                const files = await res.json();
+                const container = document.getElementById('media-grid');
+                if(files.length === 0) {
+                    container.innerHTML = '<p style="color:var(--text-muted); grid-column: 1/-1;">No images found.</p>';
+                    return;
+                }
+                container.innerHTML = files.map(f => `
+                    <div style="border:1px solid var(--border); border-radius:8px; overflow:hidden; position:relative;">
+                        <img src="${f.url}" style="width:100%; height:120px; object-fit:cover;">
+                        <div style="padding:8px; display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:0.75rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:80px;" title="${f.name}">${f.name}</span>
+                            <button class="btn btn-outline" style="padding:4px;" onclick="copyToClipboard('${f.url}')" title="Copy URL"><i class="fas fa-link"></i></button>
+                            <button class="btn btn-outline" style="padding:4px; color:#ef4444; border-color:#fee2e2;" onclick="deleteMedia('${f.name}')" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch(e) { console.error(e); }
+        }
+
+        async function uploadImage(input) {
+            if (!input.files || !input.files[0]) return;
+            const formData = new FormData();
+            formData.append('image', input.files[0]);
+
+            try {
+                const res = await fetch(`${API_BASE}/media`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${currentToken}` },
+                    body: formData
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast('Image uploaded successfully!');
+                    loadMedia();
+                } else {
+                    showToast('Upload failed: ' + data.error, true);
+                }
+            } catch (e) { showToast('Upload error', true); }
+        }
+
+        async function deleteMedia(filename) {
+            if(!confirm('Are you sure you want to delete this image?')) return;
+            try {
+                const res = await fetch(`${API_BASE}/media/${filename}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+                if (res.ok) {
+                    showToast('Image deleted');
+                    loadMedia();
+                }
+            } catch(e) { showToast('Delete failed', true); }
+        }
+
+        function copyToClipboard(text) {
+            const fullUrl = window.location.origin + text;
+            navigator.clipboard.writeText(fullUrl).then(() => {
+                showToast('URL copied to clipboard!');
+            });
+        }
+
+        async function changePassword() {
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            
+            if(!currentPassword || !newPassword) return showToast('Please fill all fields', true);
+
+            try {
+                const res = await fetch(`${API_BASE}/admin/change-password`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentToken}` 
+                    },
+                    body: JSON.stringify({ currentPassword, newPassword })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    showToast('Password updated successfully!');
+                    document.getElementById('current-password').value = '';
+                    document.getElementById('new-password').value = '';
+                } else {
+                    showToast(data.error || 'Update failed', true);
+                }
+            } catch(e) { showToast('Connection error', true); }
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.right = '20px';
+            toast.style.backgroundColor = isError ? '#ef4444' : '#10b981';
+            toast.style.color = 'white';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '8px';
+            toast.style.zIndex = '3000';
+            toast.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        window.logout = () => {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminLogin');
+            window.location.href = 'admin-login.html';
+        };
+    </script>
+</body>
+
+</html>

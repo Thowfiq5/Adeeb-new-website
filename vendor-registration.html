@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Registration | ADEEB GROUP</title>
+
+    <!-- Link to your existing CSS -->
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Vendor Page Specific CSS -->
+    <style>
+        :root {
+            --vendor-primary: #328b96;
+            --vendor-secondary: #3aa7bbf3;
+            --vendor-gradient: linear-gradient(135deg, var(--vendor-primary) 0%, var(--vendor-secondary) 100%);
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-pulse-once {
+            animation: pulse 1s ease-in-out;
+        }
+
+        /* Staggered Animation Delays */
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-4 {
+            animation-delay: 0.4s;
+        }
+
+        .animate-delay-5 {
+            animation-delay: 0.5s;
+        }
+
+        /* Vendor Page Styles */
+        .page-header {
+            padding: 180px 0 100px;
+            background: var(--vendor-gradient);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMyYzNlNTAiIG9wYWNpdHk9IjAuMSIvPjxwYXRoIGQ9Ik0wIDUwMEw1MDAgMTAwMEwxMDAwIDUwMEw1MDAgMFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjEiLz48L3N2Zz4=');
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .vendor-registration-section {
+            padding: 80px 0;
+            background: var(--gray-very-light);
+        }
+
+        .vendor-form-container {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vendor-form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .vendor-form-header h2 {
+            color: var(--vendor-primary);
+            margin-bottom: 15px;
+        }
+
+        .vendor-form-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--vendor-primary);
+        }
+
+        .vendor-requirements-note {
+            background: #fff8e1;
+            border-left: 4px solid #ffb300;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .vendor-requirements-note h4 {
+            color: #ff8f00;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .required-note {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .vendor-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            color: var(--vendor-primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gray-very-light);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--gray-dark);
+        }
+
+        .form-group label.required::after {
+            content: ' *';
+            color: #d32f2f;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--gray-very-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--vendor-primary);
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+        }
+
+        .form-control.error {
+            border-color: #d32f2f;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .file-upload {
+            border: 2px dashed var(--gray-light);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-upload:hover {
+            border-color: var(--vendor-primary);
+            background: rgba(44, 62, 80, 0.05);
+        }
+
+        .file-upload i {
+            font-size: 2.5rem;
+            color: var(--vendor-primary);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover i {
+            transform: translateY(-5px);
+        }
+
+        .file-upload p {
+            margin: 5px 0;
+            color: var(--gray-medium);
+        }
+
+        .file-upload .file-name {
+            margin-top: 10px;
+            font-weight: 500;
+            color: var(--vendor-primary);
+            word-break: break-all;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--vendor-primary);
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .textarea-control {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .file-size-note {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* CAPTCHA Styles */
+        .captcha-section {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .captcha-challenge {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            background: linear-gradient(45deg, #666, #333);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 2px dashed #ddd;
+            user-select: none;
+        }
+
+        .captcha-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .captcha-input {
+            width: 200px;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .refresh-captcha {
+            background: none;
+            border: none;
+            color: var(--vendor-primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-captcha:hover {
+            transform: rotate(180deg);
+        }
+
+        /* Documents Section */
+        .documents-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--vendor-primary);
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Terms & Conditions */
+        .terms-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--vendor-primary);
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            margin-top: 5px;
+        }
+
+        .terms-checkbox label {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .terms-checkbox a {
+            color: var(--vendor-primary);
+            text-decoration: underline;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn-vendor {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: var(--vendor-gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-vendor:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-vendor:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-reset {
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--vendor-primary);
+            border: 2px solid var(--vendor-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-reset:hover {
+            background: var(--vendor-primary);
+            color: var(--white);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .success-message i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 12px;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--vendor-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            margin: 0 auto 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .vendor-form-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .vendor-form-container {
+                padding: 30px;
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .captcha-controls {
+                flex-direction: column;
+            }
+
+            .captcha-input {
+                width: 100%;
+            }
+
+            .page-header {
+                padding: 140px 0 80px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vendor-form-container {
+                padding: 20px;
+            }
+
+            .file-upload {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pages/who-we-are.html"><i class="fas fa-users"></i>Who We Are</a></li>
+                                <li><a href="pages/area-of-operation.html"><i class="fas fa-map-marker-alt"></i>Area Of
+                                        Operation</a></li>
+                                <li><a href="pages/our-commitment.html"><i class="fas fa-handshake"></i>Our
+                                        Commitment</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pages/facility-management.html" class="fm-color"><i
+                                            class="fas fa-building"></i>Facility Management</a>
+                                </li>
+                                <li><a href="pages/it-services.html" class="it-color"><i
+                                            class="fas fa-laptop-code"></i>IT Services</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="pages/portfolio.html">Portfolio</a></li>
+                        <li><a href="pages/media.html">Media</a></li>
+                        <li><a href="pages/careers.html">Careers</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="active">Contact <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pages/contact.html"><i class="fas fa-phone-alt"></i>Contact Us</a></li>
+                                <li><a href="vendor-registration.html" class="vendor-color active"><i
+                                            class="fas fa-clipboard-check"></i>Vendor
+                                        Registration</a></li>
+                                <li><a href="pages/contact.html"><i class="fas fa-envelope-open-text"></i>Business
+                                        Enquiry</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="admin-hub.html">Admin</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="animate-fade-in-up">Vendor Registration</h1>
+            <p class="animate-fade-in-up animate-delay-1">Register your company as a vendor partner with ADEEB GROUP</p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-fade-in-up">Why Partner With Us?</h2>
+                <p class="animate-fade-in-up animate-delay-1">Join our network of trusted vendors and grow your business
+                    with ADEEB GROUP</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card animate-fade-in-up animate-delay-1">
+                    <div class="benefit-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Regular Business Opportunities</h3>
+                    <p>Access to ongoing projects and steady workflow with predictable scheduling.</p>
+                </div>
+
+                <div class="benefit-card animate-fade-in-up animate-delay-2">
+                    <div class="benefit-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Long-term Partnerships</h3>
+                    <p>Build lasting relationships with one of the region's leading service providers.</p>
+                </div>
+
+                <div class="benefit-card animate-fade-in-up animate-delay-3">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business Growth</h3>
+                    <p>Expand your portfolio and grow your business with our diverse project requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendor Registration Form -->
+    <section class="vendor-registration-section">
+        <div class="container">
+            <div class="vendor-form-container">
+                <div class="vendor-form-header">
+                    <h2 class="animate-fade-in-up">Vendor Registration Form</h2>
+                    <p class="animate-fade-in-up animate-delay-1">Complete the form below to register as a vendor
+                        partner</p>
+                </div>
+
+                <div class="vendor-requirements-note">
+                    <h4><i class="fas fa-info-circle"></i> Important Information</h4>
+                    <p>Fields marked with <span class="required-note">* are required</span></p>
+                    <p class="file-size-note"><i class="fas fa-file-pdf"></i> Note: Please upload files of size less
+                        than 10 MB. Only PDF documents are accepted.</p>
+                </div>
+
+                <form id="vendorForm">
+                    <div class="vendor-form-grid">
+                        <!-- Left Column -->
+                        <div class="form-section">
+                            <h3>Company Information</h3>
+
+                            <div class="form-group">
+                                <label for="companyName" class="required">Company Name</label>
+                                <input type="text" id="companyName" name="companyName" class="form-control" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="landline" class="required">Landline No.</label>
+                                    <input type="tel" id="landline" name="landline" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile" class="required">Mobile No.</label>
+                                    <input type="tel" id="mobile" name="mobile" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea id="address" name="address" class="form-control textarea-control"
+                                    rows="3"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="companyEmail" class="required">Company E-mail</label>
+                                <input type="email" id="companyEmail" name="companyEmail" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="employees">No. Of Employees</label>
+                                <select id="employees" name="employees" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="1-10">1-10</option>
+                                    <option value="11-50">11-50</option>
+                                    <option value="51-100">51-100</option>
+                                    <option value="101-250">101-250</option>
+                                    <option value="251-500">251-500</option>
+                                    <option value="501+">501+</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="form-section">
+                            <h3>Contact & Certification</h3>
+
+                            <div class="form-group">
+                                <label for="contactPerson" class="required">Contact Person</label>
+                                <input type="text" id="contactPerson" name="contactPerson" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fax">Fax No.</label>
+                                    <input type="text" id="fax" name="fax" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="poBox">P.O Box No.</label>
+                                    <input type="text" id="poBox" name="poBox" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="majorClients">List your Major 3 Clients</label>
+                                <textarea id="majorClients" name="majorClients" class="form-control textarea-control"
+                                    rows="3" placeholder="List client names with brief description of work"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="website">Website</label>
+                                <input type="url" id="website" name="website" class="form-control"
+                                    placeholder="https://">
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="isoCertified" name="isoCertified">
+                                <label for="isoCertified">ISO Certified</label>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="adnocIcv" name="adnocIcv">
+                                <label for="adnocIcv">ADNOC ICV Certified</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Upload Section -->
+                    <div class="documents-section">
+                        <h3>Required Documents (PDF only, max 10MB each)</h3>
+                        <p class="file-size-note">All documents marked with * are mandatory</p>
+
+                        <div class="documents-grid">
+                            <!-- Left Column Documents -->
+                            <div>
+                                <div class="form-group">
+                                    <label for="companyProfile">Company Profile</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('companyProfile').click()">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Click to upload Company Profile</p>
+                                        <span class="file-name" id="companyProfileName">No file chosen</span>
+                                        <input type="file" id="companyProfile" class="file-input" accept=".pdf">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="powerOfAttorney" class="required">Power Of Attorney *</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('powerOfAttorney').click()">
+                                        <i class="fas fa-file-contract"></i>
+                                        <p>Click to upload Power Of Attorney</p>
+                                        <span class="file-name" id="powerOfAttorneyName">No file chosen</span>
+                                        <input type="file" id="powerOfAttorney" class="file-input" accept=".pdf"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="workmenInsurance" class="required">Workmen Compensation Insurance Policy
+                                        *</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('workmenInsurance').click()">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <p>Click to upload Insurance Policy</p>
+                                        <span class="file-name" id="workmenInsuranceName">No file chosen</span>
+                                        <input type="file" id="workmenInsurance" class="file-input" accept=".pdf"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="declarationForm" class="required">Declaration Form *</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('declarationForm').click()">
+                                        <i class="fas fa-file-signature"></i>
+                                        <p>Click to upload Declaration Form</p>
+                                        <span class="file-name" id="declarationFormName">No file chosen</span>
+                                        <input type="file" id="declarationForm" class="file-input" accept=".pdf"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column Documents -->
+                            <div>
+                                <div class="form-group">
+                                    <label for="tradeLicense" class="required">Valid Trade License Copy *</label>
+                                    <div class="file-upload" onclick="document.getElementById('tradeLicense').click()">
+                                        <i class="fas fa-file-certificate"></i>
+                                        <p>Click to upload Trade License</p>
+                                        <span class="file-name" id="tradeLicenseName">No file chosen</span>
+                                        <input type="file" id="tradeLicense" class="file-input" accept=".pdf" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="vatCertificate" class="required">VAT Certificate *</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('vatCertificate').click()">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                        <p>Click to upload VAT Certificate</p>
+                                        <span class="file-name" id="vatCertificateName">No file chosen</span>
+                                        <input type="file" id="vatCertificate" class="file-input" accept=".pdf"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="liabilityInsurance">Public Liability Insurance Policy</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('liabilityInsurance').click()">
+                                        <i class="fas fa-file-medical-alt"></i>
+                                        <p>Click to upload Liability Insurance</p>
+                                        <span class="file-name" id="liabilityInsuranceName">No file chosen</span>
+                                        <input type="file" id="liabilityInsurance" class="file-input" accept=".pdf">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bankLetter" class="required">Bank Letter/Audit Report *</label>
+                                    <div class="file-upload" onclick="document.getElementById('bankLetter').click()">
+                                        <i class="fas fa-university"></i>
+                                        <p>Click to upload Bank Letter/Audit</p>
+                                        <span class="file-name" id="bankLetterName">No file chosen</span>
+                                        <input type="file" id="bankLetter" class="file-input" accept=".pdf" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Documents -->
+                        <div style="margin-top: 30px;">
+                            <h4>Additional Documents</h4>
+                            <div class="documents-grid">
+                                <div class="form-group">
+                                    <label for="passportCopy" class="required">Valid Passport Copy (Owner) *</label>
+                                    <div class="file-upload" onclick="document.getElementById('passportCopy').click()">
+                                        <i class="fas fa-passport"></i>
+                                        <p>Click to upload Passport Copy</p>
+                                        <span class="file-name" id="passportCopyName">No file chosen</span>
+                                        <input type="file" id="passportCopy" class="file-input" accept=".pdf" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="isoCertificate">ISO Certificate</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('isoCertificate').click()">
+                                        <i class="fas fa-award"></i>
+                                        <p>Click to upload ISO Certificate</p>
+                                        <span class="file-name" id="isoCertificateName">No file chosen</span>
+                                        <input type="file" id="isoCertificate" class="file-input" accept=".pdf">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="otherCertificate">Any Other Certificate</label>
+                                    <div class="file-upload"
+                                        onclick="document.getElementById('otherCertificate').click()">
+                                        <i class="fas fa-file-alt"></i>
+                                        <p>Click to upload Other Certificates</p>
+                                        <span class="file-name" id="otherCertificateName">No file chosen</span>
+                                        <input type="file" id="otherCertificate" class="file-input" accept=".pdf">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Declaration Form Download -->
+                    <div class="form-section">
+                        <h3>Declaration Form</h3>
+                        <div
+                            style="background: #e3f2fd; padding: 20px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                            <h4 style="color: #1976d2; margin-bottom: 10px;">
+                                <i class="fas fa-download"></i> Download Declaration Form
+                            </h4>
+                            <p>Please download, fill, sign, and upload the declaration form in the documents section
+                                above.</p>
+                            <button type="button" class="btn-vendor"
+                                onclick="window.open('documents/Declaration_Form.doc', '_blank')"
+                                style="margin-top: 10px;">
+                                <i class="fas fa-file-word"></i> Download Declaration Form
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CAPTCHA Section -->
+                    <div class="captcha-section">
+                        <h3>Security Verification</h3>
+                        <p>Please enter the characters you see in the image below:</p>
+
+                        <div class="captcha-challenge" id="captchaText">A1B2C3</div>
+
+                        <div class="captcha-controls">
+                            <input type="text" class="captcha-input" id="captchaInput" placeholder="Enter code"
+                                maxlength="6">
+                            <button type="button" class="refresh-captcha" id="refreshCaptcha">
+                                <i class="fas fa-redo"></i> Refresh
+                            </button>
+                        </div>
+
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">
+                            <i class="fas fa-shield-alt"></i> This helps prevent automated submissions
+                        </p>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="terms-section">
+                        <h3>Terms & Conditions</h3>
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+                            <label for="termsAgreement">
+                                I hereby declare that all information provided is true and correct to the best of my
+                                knowledge.
+                                I understand that any false information may result in rejection of my application.
+                                I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> of
+                                ADEEB GROUP.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Registration Submitted Successfully!</h3>
+                        <p>Thank you for your interest in partnering with ADEEB GROUP. We will review your application
+                            and contact you soon.</p>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-vendor">
+                            <i class="fas fa-paper-plane"></i> Submit Registration
+                        </button>
+                        <button type="reset" class="btn-reset">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col animate-on-scroll">
+                    <div class="footer-logo">
+                        <img src="images/48x48.svg" alt="ADEEB GROUP Logo">
+                        <span>ADEEB GROUP</span>
+                    </div>
+                    <p>Your trusted partner for integrated Facility Management and IT
+                        Services solutions.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/adeeb-group-930a31342/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/AdeebFM"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/adeebgroupllc"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="contact-info-card">
+                        <h4>Contact Info</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 500</li>
+                            <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> info@adeebgroup.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="pages/facility-management.html" class="fm-color">Facility Management</a></li>
+                        <li><a href="pages/it-services.html" class="it-color">IT Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="pages/who-we-are.html">Who We Are</a></li>
+                        <li><a href="pages/area-of-operation.html">Area Of Operation</a></li>
+                        <li><a href="pages/portfolio.html">Portfolio</a></li>
+                        <li><a href="pages/media.html">Media</a></li>
+                        <li><a href="pages/careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col animate-on-scroll">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="pages/contact.html"><i class="fas fa-phone-alt"></i>Contact Us</a></li>
+                        <li><a href="vendor-registration.html" class="vendor-color"><i
+                                    class="fas fa-clipboard-check"></i>Vendor Registration</a></li>
+                        <li><a href="pages/contact.html"><i class="fas fa-envelope-open-text"></i>Business Enquiry</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ADEEB GROUP. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // File upload functionality
+        document.querySelectorAll('.file-input').forEach(input => {
+            input.addEventListener('change', function () {
+                const fileNameElement = document.getElementById(this.id + 'Name');
+                if (this.files.length > 0) {
+                    fileNameElement.textContent = this.files[0].name;
+                } else {
+                    fileNameElement.textContent = 'No file chosen';
+                }
+            });
+        });
+
+        // CAPTCHA refresh
+        document.getElementById('refreshCaptcha')?.addEventListener('click', function () {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+            let newCaptcha = '';
+            for (let i = 0; i < 6; i++) {
+                newCaptcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('captchaText').textContent = newCaptcha;
+        });
+
+        // Form submission
+        document.getElementById('vendorForm')?.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Validate required fields
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    isValid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            // Validate CAPTCHA
+            const captchaInput = document.getElementById('captchaInput');
+            if (captchaInput.value.toUpperCase() !== document.getElementById('captchaText').textContent) {
+                captchaInput.classList.add('error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                const API_BASE = 'http://localhost:3000';
+                const payload = {
+                    company: document.getElementById('companyName')?.value || '',
+                    contact: document.getElementById('contactPerson')?.value || '',
+                    email: document.getElementById('companyEmail')?.value || '',
+                    phone: document.getElementById('mobile')?.value || document.getElementById('landline')?.value || ''
+                };
+                fetch(`${API_BASE}/api/vendor-applications`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).catch(() => {
+                    const applications = JSON.parse(localStorage.getItem('vendorApplications')) || [];
+                    const localApp = { id: Date.now(), date: new Date().toISOString().slice(0, 10), ...payload, status: 'pending' };
+                    applications.unshift(localApp);
+                    localStorage.setItem('vendorApplications', JSON.stringify(applications));
+                });
+
+                document.getElementById('successMessage').classList.add('show');
+
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    this.reset();
+                    document.getElementById('successMessage').classList.remove('show');
+
+                    // Reset file names
+                    document.querySelectorAll('.file-name').forEach(el => {
+                        el.textContent = 'No file chosen';
+                    });
+
+                    // Refresh CAPTCHA
+                    document.getElementById('refreshCaptcha')?.click();
+                }, 3000);
+            }
+        });
+
+        // Initialize CAPTCHA on load
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('refreshCaptcha')?.click();
+        });
+    </script>
+</body>
+
+</html>

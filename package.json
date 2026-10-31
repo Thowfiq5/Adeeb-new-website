@@ -1,0 +1,16 @@
+{
+    "name": "adeeb-website",
+    "version": "1.0.0",
+    "description": "ADEEB GROUP Website with Advanced Admin Suite",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "db:init": "node scripts/db-init.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "formidable": "^3.5.4",
+        "jsonwebtoken": "^9.0.2",
+        "sqlite3": "^5.1.7"
+    }
+}
